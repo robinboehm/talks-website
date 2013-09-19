@@ -18,18 +18,42 @@ controller.on('gesture', function (gesture){
     if(!circleCondition && gesture.type === 'swipe'){
         handleSwipe(gesture);
     }
-    if(circleCondition && gesture.type === 'circle'){
+    else if(circleCondition && gesture.type === 'circle'){
         handleCircle(gesture);
     }
+    else{
+        if(!circleCondition && gesture.type === 'screenTap'){
+            //document.getElementById("p1").focus();
+
+        }
+        console.log(gesture);
+    }
+
 });
 
 function handleSwipe (swipe){
     var startFrameID;
     if(!timeoutActive && swipe.state === 'stop'){
-        if (swipe.direction[0] > 0){
+        var directionHorizontal = swipe.direction[0];
+        var left = directionHorizontal>.3;
+        var right = -directionHorizontal>.3;
+
+        console.log("left/right",left,right,swipe.direction[0]);
+        var up = swipe.direction[1]>.5;
+        var down =  -swipe.direction[1]>.5;
+
+        console.log("up/down",up,down,swipe.direction[1]);
+
+        if (left){
             Reveal.left();
-        }else{
+        }else if(right){
             Reveal.right();
+        }
+        else if(up){
+            Reveal.down();
+        }
+        else if(down){
+            Reveal.up();
         }
         timeOut(650);
     }
