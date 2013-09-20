@@ -1,11 +1,13 @@
 angular.module("leap", []);
 
 angular.module("leap")
-    .service('leap', function (configParams) {
+    .service('leap', function () {
         if (angular.isUndefined(Leap)) {
             throw new Error("You should include LeapJS Native JavaScript API");
         }
-        return new Leap.Controller(configParams);
+        var controller = new Leap.Controller();
+        controller.connect();
+        return controller;
     });
 
 angular.module("leap")
@@ -36,7 +38,7 @@ angular.module("leap")
                         if (swipe.direction[0] > 0) {
                             execute();
                         }
-                        else{
+                        else {
                             // right
                         }
                         timeOut(650);
@@ -53,3 +55,51 @@ angular.module("leap")
             }
         };
     });
+
+
+angular.module("leap")
+    .directive('leapScreenTap', function ($timeout, $parse, leap) {
+        return {
+            restrict: 'A',
+            link    : function (scope, elem, attr) {
+                var directiveName = "leapScreenTap";
+
+                var timeoutActive = false;
+
+                function timeOut(ms) {
+                    timeoutActive = true;
+                    $timeout(function () {
+                        timeoutActive = false;
+                    }, ms)
+                };
+
+                var execute = function () {
+                    scope.$apply(function () {
+                        $parse(attr[directiveName])(scope);
+                    });
+                };
+
+
+                function handleSwipe(swipe) {
+                    if (!timeoutActive && swipe.state === 'stop') {
+                        execute();
+                        //timeOut(650);
+                    }
+                }
+
+
+                leap.on('gesture', function (gesture) {
+                    if (gesture.type === 'screenTap') {
+                        handleSwipe(gesture);
+                    }
+                });
+
+            }
+        };
+    });
+
+
+
+
+angular.module("leap")
+    .controller('newScope', function ($scope) {});

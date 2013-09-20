@@ -23,10 +23,10 @@ controller.on('gesture', function (gesture){
     }
     else{
         if(!circleCondition && gesture.type === 'screenTap'){
-            //document.getElementById("p1").focus();
+            // Focus for usage
 
         }
-        console.log(gesture);
+        //console.log(gesture);
     }
 
 });
@@ -38,11 +38,11 @@ function handleSwipe (swipe){
         var left = directionHorizontal>.3;
         var right = -directionHorizontal>.3;
 
-        console.log("left/right",left,right,swipe.direction[0]);
+        //console.log("left/right",left,right,swipe.direction[0]);
         var up = swipe.direction[1]>.5;
         var down =  -swipe.direction[1]>.5;
 
-        console.log("up/down",up,down,swipe.direction[1]);
+        //console.log("up/down",up,down,swipe.direction[1]);
 
         if (left){
             Reveal.left();

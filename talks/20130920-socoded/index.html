@@ -66,7 +66,7 @@
     <li>About Me</li>
     <li>Quickstart</li>
     <li>About Angular</li>
-    <li>Hands on</li>
+    <li>Show some stuff</li>
     <li>Overview</li>
   </ul>
 </section>
@@ -202,7 +202,7 @@ frame.hands[0].sphereCenter
 
   <div class="left">
     <div class="left">
-      <input type="number" ng-model="used">
+      <input type="number" ng-model="used" leap-screen-tap="used=used+1">
       <span style="vertical-align: middle;">already use</span>
     </div>
     <div class="clear"></div>
@@ -220,7 +220,7 @@ frame.hands[0].sphereCenter
   </div>
 
   <div class="right">
-    <div class="poll poll1" style="height: {{used / (used + know + never_heard) * 5}}em;">
+    <div id="p1" class="poll poll1" style="height: {{used / (used + know + never_heard) * 5}}em;">
       <span ng-show="used">{{used}}</span>
     </div>
     <div class="poll poll2" style="height: {{know / (used + know + never_heard) * 5}}em;">
@@ -245,7 +245,7 @@ frame.hands[0].sphereCenter
 
   <pre>
     <code>
-        <input ng-model="used"/>
+        &lt;input ng-model="used"/&gt;
         &lt;input ng-model="know"&gt;
         &lt;input ng-model="never_heard"&gt;
 
@@ -266,12 +266,24 @@ frame.hands[0].sphereCenter
             <li>Single Page Application</li>
             <li>by Google</li>
             <li>Open Source</li>
-            <li>MVC/MVW</li>
             <li>Designed for Testing</li>
+            <li>MVVM/MVW</li>
         </ul>
     </section>
 
 </section>
+<section>
+    <h2>The Story...</h2>
+</section>
+
+<section>
+    <h2>The Story?</h2>
+</section>
+
+<section>
+    <h2>The Story!</h2>
+</section>
+
 <section>
   <h2>The Father</h2>
     <p>2009</p>
@@ -280,6 +292,11 @@ frame.hands[0].sphereCenter
     <img src="images/angularjs-logo-2009.png"/>
     <li>For web developers</li>
     <li>Google 20% project</li>
+</section>
+
+<section>
+    <h2>Beginnings</h2>
+    <img src="images/google-feedback-logo.png"/>
 </section>
 
 <section>
@@ -293,60 +310,288 @@ frame.hands[0].sphereCenter
 </section>
 
 
+<section>
+  <h2>Directives</h2>
+
+  <ul>
+    <li>Extend HTML</li>
+    <li>Tags and attributes</li>
+    <li>Reusable components</li>
+  </ul>
+</section>
 
 
 <section>
-  <h2>Hands on!</h2>
+    <h2>Directive examples</h2>
 </section>
 
 <section>
-  <h2>Overview</h2>
-  <img src="images/overview.svg"/>
+  <h2>Directive examples</h2>
+  <div>
+      <pre>
+          <code ng-non-bindable>
+              <div>0</div>
+          </code>
+      </pre>
+      <div>
+          0
+      </div>
+  </div>
 </section>
 
 <section>
-  <h2>About us - Angularjs.de</h2>
+    <h2>Directive examples</h2>
+    <div>
+      <pre>
+          <code ng-non-bindable>
+              <div>{{ someVar }}</div>
+              <input type="range" ng-model="someVar"/>
+          </code>
+      </pre>
+        <div ng-controller="newScope" ng-init="someVar=0">
+            <div>{{ someVar }}</div>
+            <input type="range" ng-model="someVar"/>
+        </div>
+    </div>
+</section>
 
-  <div class="left">
-    <a href="http://angularjs.de" target="_blank">
-      <img src="images/angularjsde-logo.png"/>
-    </a>
-  </div>
+<section>
+    <h2>Directive examples</h2>
+    <div>
+      <pre>
+          <code ng-non-bindable>
+              <div ng-click="someVar=0">{{ someVar }}</div>
+              <input type="range" ng-model="someVar"/>
+          </code>
+      </pre>
+        <div ng-controller="newScope" ng-init="someVar=0">
+            <div ng-click="someVar=0">{{ someVar }}</div>
+            <input type="range" ng-model="someVar"/>
+        </div>
+    </div>
+</section>
 
-  <div class="right">
-    <div class="person left">
-      <div>Sascha</div><div>Brink</div>
-      <img src="images/sascha_brink.jpeg" class="circle"/>
-      <div><a href="https://twitter.com/sascha_brink">@sascha_brink</a></div>
+<style>
+    .result {
+        height: 100px;
+    }
+
+    .color {
+        height: 16px;
+        width: 16px;
+        float: left;
+        margin: 0 1px 1px 0;
+    }
+
+    .clearfix {
+        clear: both;
+    }
+</style>
+
+
+<section ng-controller="newScope" ng-app ng-init="color.r=0;color.g=0;color.b=0;color.a=0.75;steps=[1,50,100,150,200,255]">
+    <h2>Colorpicker</h2>
+    <div class="result" style="background-color:rgba({{color.r}},{{color.g}},{{color.b}},{{color.a}});"></div>
+    <div><input type="range" ng-model="color.r" max="255"/>{{color.r}}</div>
+    <div><input type="range" ng-model="color.g" max="255"/>{{color.g}}</div>
+    <div><input type="range" ng-model="color.b" max="255"/>{{color.b}}</div>
+    <div><input type="range" ng-model="color.a" max="1" step="0.01"/>{{color.a}}</div>
+</section>
+
+
+<section ng-controller="newScope" ng-init="color.r=0;color.g=0;color.b=0;color.a=0.75;steps=[1,50,100,150,200,255]">
+    <h2>Colorpicker</h2>
+    <pre ng-non-bindable="">
+        <code>
+<div style="background-color:rgba({{r}},{{g}},{{b}},{{a}});"></div>
+<input type="range" ng-model="r" max="255"/>{{r}}
+        </code>
+    </pre>
+</section>
+
+
+<section ng-controller="newScope" ng-init="color.r=0;color.g=0;color.b=0;color.a=0.75;steps=[1,50,100,150,200,255]">
+    <h2>Colorpicker</h2>
+    <div class="result" style="background-color:rgba({{color.r}},{{color.g}},{{color.b}},{{color.a}});"></div>
+    <div style="float: right;">
+        <div><input type="range" ng-model="color.r" max="255"/>{{color.r}}</div>
+        <div><input type="range" ng-model="color.g" max="255"/>{{color.g}}</div>
+        <div><input type="range" ng-model="color.b" max="255"/>{{color.b}}</div>
+        <div><input type="range" ng-model="color.a" max="1" step="0.01"/>{{color.a}}</div>
     </div>
 
-    <div class="person  left">
-      <div>Philipp</div><div>Tarasiewicz</div>
-      <img src="images/philipp_tarasiewicz.jpeg" class="circle" style="margin-left: 10px"/>
-      <div><a href="https://twitter.com/justphilmusic">@justphilmusic</a></div>
+    <div style="float: left; width: 60%">
+    <div ng-repeat="r in steps" class="clearfix">
+        <div ng-repeat="g in steps">
+            <div ng-repeat="b in steps" ng-click="color.r=r;color.g=g;color.b=b"
+                 class="color" style="background-color:rgb({{r}},{{g}},{{b}});"></div>
+        </div>
     </div>
-
-    <div class="person left">
-      <div>Robin</div><div>B&ouml;hm</div>
-      <img src="images/robin_boehm.png" class="circle"/>
-      <div><a href="https://twitter.com/roobijn">@roobijn</a></div>
     </div>
+    <div class="clearfix"></div>
+    <a href="http://jsfiddle.net/robinboehm/GKUFN/8/">JSFiddle</a>
+</section>
 
-  </div>
-    <div class="clear"></div>
-    <p></p>
-    <div class="left">
+
+
+
+
+<section>
+    <h2>Creating own directives</h2>
+    <img src="images/directives.png"/>
+</section>
+
+<section>
+    <h2>Use existing</h2>
+    <h3>Twitter Bootstrap Components</h3>
+    <img src="images/angular-ui.png"/>
+    <a href="http://angular-ui.github.io/bootstrap/">http://angular-ui.github.io/bootstrap/</a>
+</section>
+
+<section>
+    <h2>Use existing</h2>
+    <h3>Angular-Kendo Wrapper</h3>
+    <img src="images/kendo.png" style="background-color: white"/>
+    <a href="https://github.com/kendo-labs/angular-kendo">https://github.com/kendo-labs/angular-kendo</a>
+</section>
+
+
+
+
+
+<section>
+  <h2>Creating own directives</h2>
+</section>
+
+<section>
+    <h2>Doing some cool stuff...</h2>
+</section>
+
+<section>
+    <section>
+        <h2>Leap Motion</h2>
+    </section>
+
+    <section>
+        <h2>Leap Motion</h2>
+        <img src="images/leap-box.jpg"/>
+    </section>
+
+    <section>
+        <h2>Leap Motion</h2>
+        <img src="images/leap-motion-1.jpg"/>
+    </section>
+
+
+    <section>
+        <h2>Leap Motion</h2>
+        <img src="images/leap-hands.jpg"/>
+    </section>
+
+    <section>
+        <h2>Leap Motion</h2>
+        <img src="images/leap-motion-game.png"/>
+    </section>
+
+    <section>
+        Maybe...
+    </section>
+
+    <section>
+        Control my slides..
+    </section>
+
+    <section>
+        <a href="http://js.leapmotion.com/">LeapJS API</a>
+    </section>
+</section>
+
+<section>
+    <img src="images/w00t.jpg"/>
+</section>
+
+<section>
+    <h2>Angular + Leap</h2>
+</section>
+
+<section>
+    <h2>Directives</h2>
     <ul>
-      <li>Book (work in progress)</li>
-      <li>In-House Consulting & Coaching</li>
-      <li>Workshops</li>
-      <li>Twitter <a href="http://twitter.com/angularjs_de">@angularjs_de</a></li>
-      <li>Google+ & Facebook <strong>AngularJS Deutschland</strong></li>
-      <li><a href="http://angularjs.de" target="_blank">AngularJS.de</a></li>
+        <li>Easy to use</li>
+        <li>Reusable</li>
+        <li>...</li>
     </ul>
-    </div>
-    <div class="clear"></div>
 </section>
+
+<section>
+    <h3>leap-swipe-left="slideleft()"</h3>
+</section>
+
+<section>
+    <h3>leap-screen-tap="used=used+1"</h3>
+</section>
+
+<section>
+    <h2>Directives</h2>
+    <pre ng-non-bindable>
+        <code>
+<input type="number" ng-model="used" leap-screen-tap="used=used+1">
+        </code>
+    </pre>
+</section>
+
+
+<section ng-controller="newScope" ng-init="used=0;know=0;never_heard=0">
+    <h2>Quick-Start</h2>
+
+    <div style="margin-bottom:60px">How many of you ... AngularJS</div>
+
+    <div class="left">
+        <div class="left">
+            <input type="number" ng-model="used" leap-screen-tap="used=used+1">
+            <span style="vertical-align: middle;">already use</span>
+        </div>
+        <div class="clear"></div>
+
+        <div class="left">
+            <input ng-model="know" type="number">
+            <span style="vertical-align: middle;">know</span>
+        </div>
+        <div class="clear"></div>
+
+        <div class="left">
+            <input ng-model="never_heard" type="number">
+            <span style="vertical-align: middle;">never heard about</span>
+        </div>
+    </div>
+
+    <div class="right">
+        <div id="p1" class="poll poll1" style="height: {{used / (used + know + never_heard) * 5}}em;">
+            <span ng-show="used">{{used}}</span>
+        </div>
+        <div class="poll poll2" style="height: {{know / (used + know + never_heard) * 5}}em;">
+            <span ng-show="know">{{know}}</span>
+        </div>
+        <div class="poll poll3" style="height: {{never_heard / (used + know + never_heard) * 5}}em;">
+            <span ng-show="never_heard">{{never_heard}}</span>
+        </div>
+    </div>
+
+    <div class="clear"></div>
+
+    <div class="left">
+        <br>
+        <p ng-show="used + know + never_heard">Sum: {{used + know + never_heard}}</p>
+    </div>
+</section>
+
+
+<section>
+    <h2>Angular Leap at GitHub</h2>
+    <img src="images/angular-leap-github.png"/>
+    <a href="https://github.com/angular-leap?tab=members">https://github.com/angular-leap?tab=members</a>
+</section>
+
 <section>
     <h1>Thanks!</h1>
     <img src="images/robin_boehm.png" class="circle"/>
