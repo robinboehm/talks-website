@@ -4,7 +4,7 @@ angular.module("typeCoercion")
         function shuffle(o) { //v1.0
             for (var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
             return o;
-        };
+        }
         var tasks = shuffle([
                 '1 == 1',     // returns true
                 '"1" == 1',   // returns true ("1" converts to 1)
@@ -46,7 +46,8 @@ angular.module("typeCoercion")
                 'if(null)', // false
                 'if(undefined)', // false'// returns false (not the same object)
                 'null == undefined', // returns true
-                'null == false' // returns false
+                'null == false', // returns false
+                'NaN == NaN' // returns false
             ]),
             results = [];
 
