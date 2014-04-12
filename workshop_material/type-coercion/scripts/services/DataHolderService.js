@@ -44,7 +44,9 @@ angular.module("typeCoercion")
                 'if(0)', // false
                 'if(-1)', // true
                 'if(null)', // false
-                'if(undefined)' // false'// returns false (not the same object)
+                'if(undefined)', // false'// returns false (not the same object)
+                'null == undefined', // returns true
+                'null == false' // returns false
             ]),
             results = [];
 
